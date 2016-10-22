@@ -15,6 +15,15 @@
 
   /*jshint latedef: nofunc */
   function Posts(RESTAPI, $resource) {
-    return $resource(RESTAPI.url+'posts/:id');
+    var Posts = $resource(RESTAPI.url+'posts/:id', {
+      id: '@id'
+    }, {
+      comments: {
+        method: 'GET',
+        isArray: true,
+        url: RESTAPI.url+'posts/:id/comments'
+      }
+    });
+    return Posts;
   }
 })();
