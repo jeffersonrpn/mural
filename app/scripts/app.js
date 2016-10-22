@@ -35,6 +35,12 @@
           controller: "MainCtrl",
           controllerAs: "ctrl"
         })
+        .state('post', {
+          url: "/post/:id",
+          templateUrl: "views/post.html",
+          controller: "PostCtrl",
+          controllerAs: "ctrl"
+        })
         .state('about', {
           url: "/about",
           templateUrl: "views/about.html",
