@@ -19,6 +19,9 @@
       'ngTouch',
       'ui.router'
     ])
+    .constant('RESTAPI', {
+      url: 'https://jsonplaceholder.typicode.com/'
+    })
     .config(routeConfig);
 
     routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
