@@ -15,7 +15,7 @@
 
   /*jshint latedef: nofunc */
   function Posts(RESTAPI, $resource) {
-    var Posts = $resource(RESTAPI.url+'posts/:id', {
+    var factory = $resource(RESTAPI.url+'posts/:id', {
       id: '@id'
     }, {
       comments: {
@@ -24,6 +24,6 @@
         url: RESTAPI.url+'posts/:id/comments'
       }
     });
-    return Posts;
+    return factory;
   }
 })();

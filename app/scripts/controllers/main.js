@@ -11,13 +11,20 @@
   angular.module('muralApp')
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['Posts'];
+  MainCtrl.$inject = ['Posts', 'Auth', '$state'];
 
   /*jshint latedef: nofunc */
-  function MainCtrl(Posts) {
+  function MainCtrl(Posts, Auth, $state) {
     var vm = this;
 
     vm.posts = Posts.query();
+    vm.doLogout = doLogout;
+
+    function doLogout() {
+      Auth.logout(function() {
+        $state.go('login');
+      });
+    }
 
   }
 })();
