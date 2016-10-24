@@ -11,10 +11,10 @@
   angular.module('muralApp')
     .factory('Auth', Auth);
 
-  Auth.$inject = ['$cookies', 'Users'];
+  Auth.$inject = ['$rootScope', '$cookies', 'Users'];
 
   /*jshint latedef: nofunc */
-  function Auth($cookies, Users) {
+  function Auth($rootScope, $cookies, Users) {
     var factory = {
       isAuthenticated: function() {
         var user = $cookies.getObject('user');
@@ -31,6 +31,7 @@
               'username': user.username,
               'isAuthenticated': true
             });
+            $rootScope.currentUser = $cookies.getObject('user');
             successCallback();
           } else {
             errorCallback();
@@ -40,7 +41,11 @@
       },
       logout: function(successCallback) {
         $cookies.remove('user');
+        $rootScope.currentUser = {};
         successCallback();
+      },
+      getUser: function() {
+        return $cookies.getObject('user');
       }
     };
     return factory;

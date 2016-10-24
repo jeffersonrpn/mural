@@ -63,6 +63,8 @@
 
     /*jshint latedef: nofunc */
     function runConfig($rootScope, $state, Auth) {
+      $rootScope.$state = $state;
+      $rootScope.currentUser = Auth.getUser();
       $rootScope.$on('$stateChangeStart', function (event, toState) {
         var requiredLogin = false;
         // check if this state need login
