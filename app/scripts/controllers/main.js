@@ -18,13 +18,6 @@
     var vm = this;
 
     vm.posts = Posts.query();
-    vm.doLogout = doLogout;
-
-    function doLogout() {
-      Auth.logout(function() {
-        $state.go('login');
-      });
-    }
 
   }
 })();

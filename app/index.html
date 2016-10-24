@@ -21,6 +21,8 @@
 
     <!-- Add your site or application content here -->
 
+    <mr-navbar show="!$state.is('login')" user="currentUser"></mr-navbar>
+
     <ui-view></ui-view>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -48,6 +50,7 @@
         <script src="scripts/services/Auth.js"></script>
         <script src="scripts/services/posts.js"></script>
         <script src="scripts/services/users.js"></script>
+        <script src="scripts/directives/mr-navbar.js"></script>
         <!-- endbuild -->
 </body>
 </html>
