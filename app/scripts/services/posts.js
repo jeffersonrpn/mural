@@ -22,6 +22,11 @@
         method: 'GET',
         isArray: true,
         url: RESTAPI.url+'posts/:id/comments'
+      },
+      userPosts: {
+        method: 'GET',
+        isArray: true,
+        url: RESTAPI.url+'posts?userId=:id'
       }
     });
     return factory;
