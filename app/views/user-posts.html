@@ -1,0 +1,36 @@
+<div class="header">
+  <div class="container">
+    <h1>Welcome, {{currentUser.name}}</h1>
+    <p class="lead">
+      {{currentUser.email}}
+    </p>
+  </div>
+</div>
+
+<div class="content">
+
+    <h2>{{ctrl.posts.lenght}}</h2>
+
+    <div class="list-view">
+      <div class="list-item" ng-repeat="post in ctrl.posts">
+        <div class="list-item-heading">
+            Posted by <strong class="text-primary">{{"user " +post.userId}}</strong>
+            <h3 class="list-item-title">{{post.title}}</h3>
+        </div>
+        <div class="list-item-body">
+            {{post.body}}
+        </div>
+        <div class="list-item-footer">
+          <div class="row">
+            <div class="col-xs-6">
+              <span class="text-muted">30 comments</span>
+            </div>
+            <div class="col-xs-6 text-right">
+              <button class="btn btn-primary btn-sm" ui-sref="post({id: post.id})">Show comments</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

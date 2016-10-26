@@ -45,6 +45,13 @@
           controller: 'LoginCtrl',
           controllerAs: 'ctrl'
         })
+        .state('userPosts', {
+          url: '/myposts',
+          templateUrl: 'views/user-posts.html',
+          controller: 'UserPostsCtrl',
+          controllerAs: 'ctrl',
+          data: { requiredLogin: true }
+        })
         .state('post', {
           url: '/post/:id',
           templateUrl: 'views/post.html',

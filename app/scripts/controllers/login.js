@@ -25,7 +25,7 @@
       vm.formError = false;
       vm.isLoading = true;
       Auth.authenticate(vm.username, function() {
-        $state.go('main');
+        $state.go('userPosts');
       }, function() {
         console.log("Auth error");
         vm.isLoading = false;
