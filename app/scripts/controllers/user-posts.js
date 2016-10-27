@@ -76,6 +76,7 @@
         comments: [],
         isNew: true
       };
+      $('#newPostDialog').modal('hide');
     }
 
   }
