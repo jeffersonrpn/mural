@@ -1,45 +1,39 @@
-<!-- <div class="header">
-  <div class="container">
-    <h1>Ahoi!</h1>
-    <p class="lead">
-      This is the main view.
-    </p>
-  </div>
-</div> -->
-
 <div class="content">
 
-    <div class="list-view">
-      <div class="list-item" ng-repeat="post in ctrl.posts">
-        <div class="list-item-heading">
-          <div class="row">
-            <div class="col-xs-1">
-              <img src="http://placehold.it/100x100" ng-alt="{{post.userId}}" class="img-circle" width="100%">
-            </div>
-            <div class="col-xs-11">
-              Posted by <strong class="text-primary">{{"user " +post.userId}}</strong>
-              <h3 class="list-item-title">{{post.title}}</h3>
-            </div>
+  <div class="list-view text-container">
+
+    <div class="list-item" ng-repeat="post in ctrl.posts | orderBy:['-isNew','-totalComments']">
+      <div class="list-item-heading">
+        <h3 class="list-item-title">{{post.title}}</h3>
+      </div>
+      <div class="list-item-body">
+        {{post.body}}
+      </div>
+      <div class="list-item-footer" ng-show="post.totalComments > 0">
+        <div class="row">
+          <div class="col-xs-9">
+            <span class="text-muted">{{post.totalComments}} comments</span>
           </div>
-        </div>
-        <div class="list-item-body">
-          <div class="row">
-            <div class="col-xs-11 col-xs-offset-1">
-              {{post.body}}
-            </div>
-          </div>
-        </div>
-        <div class="list-item-footer">
-          <div class="row">
-            <div class="col-xs-6">
-              <span class="text-muted">30 comments</span>
-            </div>
-            <div class="col-xs-6 text-right">
-              <button class="btn btn-primary btn-sm" ui-sref="post({id: post.id})">Show comments</button>
-            </div>
+          <div class="col-xs-3 text-right">
+            <button class="btn btn-primary btn-sm btn-block" ng-click="ctrl.toggleComments(post)">
+              <span class="visible-xs glyphicon glyphicon-comment"></span>
+              <span class="hidden-xs">Show comments</span>
+            </button>
           </div>
         </div>
       </div>
+      <div class="media" ng-show="ctrl.isSelected(post)" ng-repeat="comment in post.comments">
+        <div class="media-left">
+          <img class="media-object img-circle" src="http://placehold.it/50x50" alt="user">
+        </div>
+        <div class="media-body">
+          <span class="text-primary"><strong>{{comment.name | mrFirstname}}</strong></span> wrote:
+          <p>{{comment.body}}</p>
+          <a ng-href="mailto:{{comment.email}}">{{comment.email}}</a>
+        </div>
+      </div>
     </div>
+
+  </div>
 
 </div>
