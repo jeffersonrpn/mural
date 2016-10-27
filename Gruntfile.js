@@ -450,6 +450,13 @@ module.exports = function (grunt) {
       ]
     },
 
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: ['**']
+    },
+
     // Test settings
     karma: {
       unit: {
