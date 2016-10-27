@@ -52,6 +52,13 @@
           controllerAs: 'ctrl',
           data: { requiredLogin: true }
         })
+        .state('profile', {
+          url: '/profile',
+          templateUrl: 'views/profile.html',
+          controller: 'ProfileCtrl',
+          controllerAs: 'ctrl',
+          data: { requiredLogin: true }
+        })
         .state('post', {
           url: '/post/:id',
           templateUrl: 'views/post.html',
