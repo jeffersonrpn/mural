@@ -1,12 +1,18 @@
 <div class="header">
   <div class="container">
+    <div class="profile-data" ng-hide="ctrl.isLoading">
+      <h1>{{ctrl.user.name}} ({{ctrl.user.username}})</h1>
+      <p class="lead">{{ctrl.user.email}}</p>
+      <p>{{ctrl.user.address.street+ " "+ctrl.user.address.suite+", " + ctrl.user.address.city}}</p>
+      <p>{{ctrl.user.address.zipcode}}</p>
+      <br>
+      <p><a ng-href="{{'http://'+ctrl.user.website}}" target="_blank">{{ctrl.user.website}}</a></p>
+      <p>{{ctrl.user.phone}}</p>
+    </div>
+    <div class="profile-loading" ng-show="ctrl.isLoading">
+      <span class="glyphicon glyphicon-refresh animated infinite rotateIn"></span>
+      Loading your profile...
+    </div>
 
-    <h1>{{ctrl.user.name}} ({{ctrl.user.username}})</h1>
-    <p class="lead">{{ctrl.user.email}}</p>
-    <p>{{ctrl.user.address.street+ " "+ctrl.user.address.suite+", " + ctrl.user.address.city}}</p>
-    <p>{{ctrl.user.address.zipcode}}</p>
-    <br>
-    <p>{{ctrl.user.website}}</p>
-    <p>{{ctrl.user.phone}}</p>
   </div>
 </div>

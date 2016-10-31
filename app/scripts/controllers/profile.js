@@ -11,17 +11,22 @@
   angular.module('muralApp')
     .controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['Auth', 'Users'];
+  ProfileCtrl.$inject = ['$timeout', 'Auth', 'Users'];
 
   /*jshint latedef: nofunc */
-  function ProfileCtrl(Auth, Users) {
+  function ProfileCtrl($timeout, Auth, Users) {
     var vm = this;
     vm.user = {};
+    vm.isLoading = false;
 
     function init() {
       var user = Auth.getUser();
+      vm.isLoading = true;
       Users.get({id: user.id}, function(response) {
-        vm.user = response;
+        $timeout(function() {
+          vm.user = response;
+          vm.isLoading = false;
+        }, 2000);
       });
     }
     init();
