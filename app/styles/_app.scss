@@ -5,6 +5,10 @@ $brand-secondary: #5D69CE;
 $section-padding-base-vertical: 40px;
 $section-padding-large-vertical: ($section-padding-base-vertical * 2);
 
+.link-inverse {
+  color: #fff;
+}
+
 .header {
   background-color: $brand-secondary;
   color: #fff;
