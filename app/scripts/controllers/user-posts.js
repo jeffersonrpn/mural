@@ -48,7 +48,9 @@
 
     function createNewPost(form) {
       var newPost = angular.copy(vm.newPost);
+      newPost.comments = [];
       vm.posts.push(newPost);
+      vm.totalPosts = vm.posts.length;
       reset(form);
     }
 
