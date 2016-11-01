@@ -12,11 +12,8 @@
   angular
     .module('muralApp', [
       'ngAnimate',
-      'ngAria',
       'ngCookies',
       'ngResource',
-      'ngSanitize',
-      'ngTouch',
       'ui.router',
       'jcs-autoValidate'
     ])
