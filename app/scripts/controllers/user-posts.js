@@ -11,15 +11,16 @@
   angular.module('muralApp')
     .controller('UserPostsCtrl', UserPostsCtrl);
 
-  UserPostsCtrl.$inject = ['$timeout', 'Posts', 'Auth'];
+  UserPostsCtrl.$inject = ['Posts', 'Auth'];
 
   /*jshint latedef: nofunc */
-  function UserPostsCtrl($timeout, Posts, Auth) {
+  function UserPostsCtrl(Posts, Auth) {
     var vm = this;
     vm.posts = [];
     vm.newPost = {};
     vm.totalPosts = 0;
     vm.selectedPost = {};
+    vm.isLoading = false;
     vm.createNewPost = createNewPost;
     vm.isSelected = isSelected;
     vm.selectPost = selectPost;
@@ -27,19 +28,17 @@
 
     function init() {
       var user = Auth.getUser();
+      vm.isLoading = true;
       Posts.userPosts({id: user.id}, function(response) {
         var posts = response;
         vm.totalPosts = posts.length;
-        let promise = $timeout();
         posts.forEach(function(post) {
-          promise = promise.then(function() {
-            Posts.comments({id: post.id}, function(response) {
-              post.totalComments = response.length + (Math.floor(Math.random() * (10 - 1)) + 1);
-              post.comments = response;
-              post.isNew = false;
-              vm.posts.push(post);
-            });
-            return $timeout(500);
+          Posts.comments({id: post.id}, function(response) {
+            post.totalComments = response.length + (Math.floor(Math.random() * (10 - 1)) + 1);
+            post.comments = response;
+            post.isNew = false;
+            vm.isLoading = false;
+            vm.posts.push(post);
           });
         });
       });

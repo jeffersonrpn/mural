@@ -13,6 +13,10 @@
     <h3 class="title text-right">You wrote {{ctrl.totalPosts}} posts</h3>
   </div>
 
+  <div class="text-center" ng-show="ctrl.isLoading">
+    <span class="glyphicon glyphicon-refresh animated infinite rotateIn"></span>
+  </div>
+
   <div class="list-view text-container">
 
     <div class="list-item animate-repeat" ng-repeat="post in ctrl.posts | orderBy:['-isNew','-totalComments']">
