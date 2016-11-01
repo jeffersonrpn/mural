@@ -11,10 +11,10 @@
   angular.module('muralApp')
     .controller('UserPostsCtrl', UserPostsCtrl);
 
-  UserPostsCtrl.$inject = ['Posts', 'Auth'];
+  UserPostsCtrl.$inject = ['$timeout', 'Posts', 'Auth'];
 
   /*jshint latedef: nofunc */
-  function UserPostsCtrl(Posts, Auth) {
+  function UserPostsCtrl($timeout, Posts, Auth) {
     var vm = this;
     vm.posts = [];
     vm.newPost = {};
@@ -28,13 +28,18 @@
     function init() {
       var user = Auth.getUser();
       Posts.userPosts({id: user.id}, function(response) {
-        vm.posts = response;
-        vm.totalPosts = vm.posts.length;
-        vm.posts.forEach(function(post) {
-          Posts.comments({id: post.id}, function(response) {
-            post.totalComments = response.length + (Math.floor(Math.random() * (10 - 1)) + 1);
-            post.comments = response;
-            post.isNew = false;
+        var posts = response;
+        vm.totalPosts = posts.length;
+        let promise = $timeout();
+        posts.forEach(function(post) {
+          promise = promise.then(function() {
+            Posts.comments({id: post.id}, function(response) {
+              post.totalComments = response.length + (Math.floor(Math.random() * (10 - 1)) + 1);
+              post.comments = response;
+              post.isNew = false;
+              vm.posts.push(post);
+            });
+            return $timeout(500);
           });
         });
       });
