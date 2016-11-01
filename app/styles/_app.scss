@@ -163,6 +163,11 @@ $section-padding-large-vertical: ($section-padding-base-vertical * 2);
   }
 }
 
+.profile-loading {
+  @media (max-width: $screen-xs-min) {
+    padding: $section-padding-large-vertical 0;
+  }
+}
 
 /**
  * Animations
