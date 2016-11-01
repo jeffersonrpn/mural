@@ -81,6 +81,10 @@ $section-padding-large-vertical: ($section-padding-base-vertical * 2);
   }
 }
 
+.list-view {
+  margin-bottom: $padding-large-vertical*4;
+}
+
 .list-item {
   padding: $padding-large-vertical * 2;
   margin-bottom: $padding-large-vertical * 2;
